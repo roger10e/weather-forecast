@@ -13,3 +13,12 @@
 
 //5. Users should be able to click the cities in the search history to be presented with current and future conditions for that city
 
+//------------------------ re-try
+
+//1. How to properly call the two APIs needed
+    //Here's the API link: 
+        //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+    //Here's how another person was setting up the variables online:
+        //var dailyWeatherApiStarts = "https://api.openweathermap.org/data/2.5/weather?q=";
+        //var dailyUVIndexApiStarts = "https://api.openweathermap.org/data/2.5/uvi?";
+        //var forecastWeatherApiStarts = "https://api.openweathermap.org/data/2.5/onecall?";
