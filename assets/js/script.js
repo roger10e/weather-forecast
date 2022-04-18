@@ -31,7 +31,7 @@ btnSearch.click(function(){
 
 
 var searchLocation = function (input) {
-    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=5&appid=b8787de324d36f137022f2eda472ed49&' + unit)
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + input + '&limit=5&appid=b8787de324d36f137022f2eda472ed49&' + unit)
     .then(response => response.json())
     .then (data => {
         //console.log the data object
@@ -65,7 +65,7 @@ var searchWeather = function (lat, lon) {
         console.log(data.current);
         
         var todayIcon = data.current.weather[0].icon;
-        document.getElementById("weatherIconToday").src = "http://openweathermap.org/img/wn/" + todayIcon + "@2x.png";
+        document.getElementById("weatherIconToday").src = "https://openweathermap.org/img/wn/" + todayIcon + "@2x.png";
 
         var todayTemp = data.current.temp;
         $("#tempToday").text(todayTemp + " F")
@@ -98,14 +98,14 @@ var searchWeather = function (lat, lon) {
 
         //set the icon for forecast day one
         var dayOneIcon = data.daily[0].weather[0].icon;
-        document.getElementById("weatherIconDay1").src = "http://openweathermap.org/img/wn/" + dayOneIcon + "@2x.png";
+        document.getElementById("weatherIconDay1").src = "https://openweathermap.org/img/wn/" + dayOneIcon + "@2x.png";
         
         var dayTwoDate = moment().add(2, 'days').format("MMM Do YY");
         $("#Date2").text(dayTwoDate);
         var dayTwoTemp = data.daily[1].temp.day;
         $("#tempDay2").text(dayTwoTemp + " F");
         var dayTwoIcon = data.daily[1].weather[0].icon;
-        document.getElementById("weatherIconDay2").src = "http://openweathermap.org/img/wn/" + dayTwoIcon + "@2x.png";
+        document.getElementById("weatherIconDay2").src = "https://openweathermap.org/img/wn/" + dayTwoIcon + "@2x.png";
         var dayTwoHumidity = data.daily[1].humidity;
         $("#humidityDay2").text(dayTwoHumidity + "%");
         
@@ -116,7 +116,7 @@ var searchWeather = function (lat, lon) {
         var dayThreeHumidity = data.daily[2].humidity;
         $("#humidityDay3").text(dayThreeHumidity + "%");
         var dayThreeIcon = data.daily[2].weather[0].icon;
-        document.getElementById("weatherIconDay3").src = "http://openweathermap.org/img/wn/" + dayThreeIcon + "@2x.png";
+        document.getElementById("weatherIconDay3").src = "https://openweathermap.org/img/wn/" + dayThreeIcon + "@2x.png";
 
         var dayFourDate = moment().add(4, 'days').format("MMM Do YY");
         $("#Date4").text(dayFourDate);
@@ -125,7 +125,7 @@ var searchWeather = function (lat, lon) {
         var dayFourHumidity = data.daily[3].humidity;
         $("#humidityDay4").text(dayFourHumidity + "%");
         var dayFourIcon = data.daily[3].weather[0].icon;
-        document.getElementById("weatherIconDay4").src = "http://openweathermap.org/img/wn/" + dayFourIcon + "@2x.png";
+        document.getElementById("weatherIconDay4").src = "https://openweathermap.org/img/wn/" + dayFourIcon + "@2x.png";
 
         var dayFiveDate = moment().add(5, 'days').format("MMM Do YY");
         $("#Date5").text(dayFiveDate);
@@ -134,7 +134,7 @@ var searchWeather = function (lat, lon) {
         var dayFiveHumidity = data.daily[4].humidity;
         $("#humidityDay5").text(dayFiveHumidity + "%");
         var dayFiveIcon = data.daily[4].weather[0].icon;
-        document.getElementById("weatherIconDay5").src = "http://openweathermap.org/img/wn/" + dayFiveIcon + "@2x.png";
+        document.getElementById("weatherIconDay5").src = "https://openweathermap.org/img/wn/" + dayFiveIcon + "@2x.png";
     })
     .catch(err => console.error(err));
 }
