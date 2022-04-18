@@ -20,14 +20,16 @@
     //How to get the correct city upon search ? - longitude & latitude
 
 //variables from another person's code...
-var citiesListArr = [];
-var numOfCities = 9;
+// var numOfCities = 9;
+// var citiesListArr = [];
 var unit = "units=imperial";
-var dailyWeatherApiStarts = 'https://api.openweathermap.org/data/2.5/weather?q=';
-var dailyUVIndexApiStarts = "https://api.openweathermap.org/data/2.5/uvi?";
-var forecastWeatherApiStarts = "https://api.openweathermap.org/data/2.5/onecall?";
+// var dailyWeatherApiStarts = 'https://api.openweathermap.org/data/2.5/weather?q=';
+// var dailyUVIndexApiStarts = "https://api.openweathermap.org/data/2.5/uvi?";
+// var forecastWeatherApiStarts = "https://api.openweathermap.org/data/2.5/onecall?";
 var btnSearch = $("#searchCityForm")
 //http://api.openweathermap.org/geo/1.0/direct?q=krum&limit=5&appid=b8787de324d36f137022f2eda472ed49
+
+var todayDate = moment().format("MMMM Do YYYY, h:mm:ss a");
 
 
 btnSearch.click(function(){
@@ -46,7 +48,7 @@ var searchLocation = function (input) {
     .then(response => response.json())
     .then (data => {
         //console.log the data object
-        console.log(data)
+        // console.log(data)
         
         var searchCityName = data[0].local_names.en;
         console.log(searchCityName);
@@ -69,55 +71,71 @@ var searchWeather = function (lat, lon) {
     .then(response => response.json())
     .then (data => {
         //console.log the entire data object received from API after user input
-        // console.log(data)
+        console.log(data)
 
         //console.log the data object for today's weather
-        // console.log(data.current);
+        console.log(data.current);
+        
+        var todayIcon = data.current.weather[0].icon;
+        document.getElementById("weatherIconToday").src = "http://openweathermap.org/img/wn/" + todayIcon + "@2x.png";
 
         var todayTemp = data.current.temp;
         $("#tempToday").text(todayTemp + " F")
-
+        
         var todayHumidity = data.current.humidity;
         $("#humidityToday").text(todayHumidity + "%");
-
+        
         var todayWind = data.current.wind_speed;
         $("#windSpeedToday").text(todayWind + "mph");
-
+        
         var todayUV = data.current.uvi;
         $("#UVIndexToday").text(todayUV);
-
+        
+        
         //console.log the forecast data object
         console.log(data.daily);
-
+        
+        //set the temperature for forecast day one
         var dayOneTemp = data.daily[0].temp.day;
         $("#tempDay1").text(dayOneTemp + " F");
-
+        
+        //set the humidity for forecast day one
         var dayOneHumidity = data.daily[0].humidity;
         $("#humidityDay1").text(dayOneHumidity + "%");
 
+        //set the icon for forecast day one
+        var dayOneIcon = data.daily[0].weather[0].icon;
+        document.getElementById("weatherIconDay1").src = "http://openweathermap.org/img/wn/" + dayOneIcon + "@2x.png";
+        
+
         var dayTwoTemp = data.daily[1].temp.day;
         $("#tempDay2").text(dayTwoTemp + " F");
-
+        var dayTwoIcon = data.daily[1].weather[0].icon;
+        document.getElementById("weatherIconDay2").src = "http://openweathermap.org/img/wn/" + dayTwoIcon + "@2x.png";
         var dayTwoHumidity = data.daily[1].humidity;
         $("#humidityDay2").text(dayTwoHumidity + "%");
-
+        
+        
         var dayThreeTemp = data.daily[2].temp.day;
         $("#tempDay3").text(dayThreeTemp + " F");
-
         var dayThreeHumidity = data.daily[2].humidity;
         $("#humidityDay3").text(dayThreeHumidity + "%");
+        var dayThreeIcon = data.daily[2].weather[0].icon;
+        document.getElementById("weatherIconDay3").src = "http://openweathermap.org/img/wn/" + dayThreeIcon + "@2x.png";
 
         var dayFourTemp = data.daily[3].temp.day;
         $("#tempDay4").text(dayFourTemp + " F");
-
         var dayFourHumidity = data.daily[3].humidity;
         $("#humidityDay4").text(dayFourHumidity + "%");
+        var dayFourIcon = data.daily[3].weather[0].icon;
+        document.getElementById("weatherIconDay4").src = "http://openweathermap.org/img/wn/" + dayFourIcon + "@2x.png";
 
         var dayFiveTemp = data.daily[4].temp.day;
         $("#tempDay5").text(dayFiveTemp + " F");
-
         var dayFiveHumidity = data.daily[4].humidity;
         $("#humidityDay5").text(dayFiveHumidity + "%");
+        var dayFiveIcon = data.daily[4].weather[0].icon;
+        document.getElementById("weatherIconDay5").src = "http://openweathermap.org/img/wn/" + dayFiveIcon + "@2x.png";
 
     })
     .catch(err => console.error(err));
@@ -131,15 +149,3 @@ var searchWeather = function (lat, lon) {
 // var searchCityForm = $("#searchCityForm");
 // var searchedCities = $("#searchedCityLi");
 
-//starting the function
-// var getCityWeather = function (searchCityName) {
-//     // formate the OpenWeather api url
-//     var apiUrl = dailyWeatherApiStarts + searchCityName + "&" + personalAPIKey + "&" + unit;
-//     // make a request to url
-//     fetch(apiUrl).then(function (response) {
-//         if (response.ok) {
-//             return response.json().then(function() {
-//                 console.log(response);
-//             });
-//         };
-// })};
